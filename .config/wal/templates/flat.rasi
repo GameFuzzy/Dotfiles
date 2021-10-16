@@ -1,0 +1,87 @@
+* {{
+	fg: {foreground};
+	fg-dark: {color0};
+	fg-highlight: {color15};
+	bg: {background};
+	bg-highlight: {color10};
+	bd: {color5};
+	bd-highlight: {color2};
+	bd-outer: {color15};
+
+	text-color: @fg;
+	background-color: @bg;
+	y-offset: 25%;
+	width: 56em;
+	spacing: 0;
+}}
+
+mainbox {{
+	border-color: @bd;
+	border-radius: 4;
+	border: 0 2 2 2;
+}}
+
+window {{
+	border-color: @bd-outer;
+	border-radius: 4;
+	border: 1;
+}}
+
+inputbar {{
+	border-color: @bd-highlight;
+	border: 2 0 0 0;
+	border-radius: 0;
+}}
+
+prompt {{
+	text-color: @fg-dark;
+	padding: 0.5em 0.7em 0.15em 0.7em;
+	border: 0 0 0 0;
+	font: "Symbols Nerd Font 20";
+	border-radius: 0;
+}}
+
+entry {{
+	placeholder-color: @fg-dark;
+	placeholder: "Search";
+	padding: 0.3em 0.5em 0.15em 0;
+	font: "sans-serif 20";
+	border-radius: 0;
+}}
+
+listview {{
+	background-color: @bg;
+	cycle: false;
+	dynamic: true;
+//	padding: 0.3em 0 0.3em 0;
+	lines: 7;
+	border-color: @bd;
+	border: 1 0 0 0;
+	border-radius: 0;
+}}
+
+element {{
+//	margin: 0 0.3em 0.3em 0.3em;
+	border-radius: 0;
+}}
+
+element-icon {{
+	size: 0.75em;
+	padding: 0.4em 0 0 0.8em;
+}}
+
+element-text {{
+	font: "sans-serif Medium 11";
+	padding: 0.3em 0.2em 0.3em 0.5em;
+}}
+
+element selected {{
+	background-color: @bg-highlight;
+	text-color: @fg-highlight;
+	border-radius: 0;
+}}
+
+element-text, element-icon {{
+    background-color: inherit;
+    text-color:       inherit;
+}}

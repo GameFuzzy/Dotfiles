@@ -8,3 +8,5 @@ starship init fish | source
 
 alias wp "wal -n -i '/home/fuzzy/.local/share/backgrounds'; /home/fuzzy/.config/awesome/wallpaper.sh; awesome-client 'awesome.restart()' 2>/dev/null"
 alias pac "sudo pacman"
+
+alias dots "dotbare"

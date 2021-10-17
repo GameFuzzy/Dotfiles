@@ -147,7 +147,7 @@ screen.connect_signal("property::geometry", function() awful.spawn.with_shell(".
 awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "dev", "www", "chat", "doc", "mus", "vid", "gfx", "game" }, s, awful.layout.layouts[1])
+    awful.tag({ "  ", "  ", " ﭮ ", "  ", "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
 
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
@@ -314,7 +314,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         {description = "toggle fullscreen", group = "client"}),
-    awful.key({ modkey,           }, "r",      function (c) c:kill()                         end,
+    awful.key({ modkey,           }, "c",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
@@ -489,28 +489,31 @@ awful.rules.rules = {
       },
 
       { rule = { class = "firefox" },
-        properties = { screen = 1, tag = "www" } },
+        properties = { screen = 1, tag = "  " } },
+
+      { rule = { class = "Brave-browser" },
+        properties = { screen = 1, tag = "  " } },
 
       { rule = { class = "mpv" },
-        properties = { screen = 1, tag = "vid" } },
+        properties = { screen = 1, tag = "  " } },
 
       { rule = { class = "discord" },
-        properties = { screen = 1, tag = "chat" } },
+        properties = { screen = 1, tag = " ﭮ " } },
 
       { rule = { class = "osu!.exe" },
-        properties = { screen = 1, tag = "game", fullscreen = true, ontop = true } },
+        properties = { screen = 1, tag = "  ", fullscreen = true, ontop = true } },
 
       { rule_any = { class = { 
 	      "Lutris",
 	      "Steam"
       } },
-        properties = { screen = 1, tag = "game", maximized_vertical = true, maximized_horizontal = true } },
+        properties = { screen = 1, tag = "  ", maximized_vertical = true, maximized_horizontal = true } },
 
       { rule = { class = "obs" },
-        properties = { screen = 1, tag = "vid" } },
+        properties = { screen = 1, tag = "  " } },
 
       { rule = { class = "Anki" },
-        properties = { screen = 1, tag = "doc", maximized_vertical = true, maximized_horizontal = true } },
+        properties = { screen = 1, tag = "  ", maximized_vertical = true, maximized_horizontal = true } },
 }
 -- }}}
 

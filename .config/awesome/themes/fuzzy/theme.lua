@@ -51,7 +51,7 @@ theme.menu_width  = dpi(100)
 
 theme.systray_icon_spacing = dpi(15)
 
-theme.notifiation_max_height = dpi(50)
+theme.notification_max_height = dpi(100)
 
 -- You can add as many variables as
 -- you wish and access them by using

@@ -8,7 +8,6 @@ configuration {
 	display-window: "缾";
 	display-run: "";
 	display-drun: "";
-    display-emoji: "";
 }
 
 

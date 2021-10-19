@@ -10,3 +10,8 @@ alias wp "wal -n -i '/home/fuzzy/.local/share/backgrounds'; /home/fuzzy/.config/
 alias pac "sudo pacman"
 
 alias dots "dotbare"
+
+function fish_greeting
+    colorscript -r
+end
+

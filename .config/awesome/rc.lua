@@ -104,24 +104,24 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 
 -- {{{ Wibar
 datewidget = wibox.widget.textbox()
-vicious.register(datewidget, vicious.widgets.date, "<span foreground='#5B6268'> </span> %b %d, %R")
+vicious.register(datewidget, vicious.widgets.date, ("<span foreground='%s'> </span> %%b %%d, %%R"):format(beautiful.fg_widget))
 
 memwidget = wibox.widget.textbox()
 vicious.cache(vicious.widgets.mem)
-vicious.register(memwidget, vicious.widgets.mem, "<span foreground='#5B6268'> </span> $1%", 13)
+vicious.register(memwidget, vicious.widgets.mem, ("<span foreground='%s'> </span> $1%%"):format(beautiful.fg_widget), 13)
 
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, "<span foreground='#5B6268'> </span> $1%", 3)
+vicious.register(cpuwidget, vicious.widgets.cpu, ("<span foreground='%s'> </span> $1%%"):format(beautiful.fg_widget), 3)
 
 volumewidget = wibox.widget.textbox()
 vicious.register(volumewidget, vicious.widgets.volume,
     function (widget, args)    
         local label = { ["🔉"] = "", ["🔈"] = "" }
-	return ("<span foreground='#5B6268'>%s </span> %d%%"):format(label[args[2]], args[1]) 
+	return ("<span foreground='%s'>%s </span> %d%%"):format(beautiful.fg_widget, label[args[2]], args[1]) 
      end, 1, "Master")
 
 weatherwidget = wibox.widget.textbox()
-vicious.register(weatherwidget, vicious.widgets.weather, "<span foreground='#5B6268'> </span> ${tempc}°C ${weather}", 59, "ESOW")
+vicious.register(weatherwidget, vicious.widgets.weather, ("<span foreground='%s'> </span> ${tempc}°C ${weather}"):format(beautiful.fg_widget), 59, "ESOW")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -147,7 +147,8 @@ screen.connect_signal("property::geometry", function() awful.spawn.with_shell(".
 awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
-    awful.tag({ "  ", "  ", " ﭮ ", "  ", "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
+    awful.tag({ "  ", "  ", " ﭮ ", "  ", "  ", "  ", "  ", "  " }, s, awful.layout.layouts[1])
+
 
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist {
@@ -172,7 +173,6 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-	    s.mypromptbox
         },
          nil, -- Middle widget
          { -- Right widgets
@@ -220,9 +220,7 @@ globalkeys = gears.table.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
-              {description = "show main menu", group = "awesome"}),
-
+    
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
@@ -275,19 +273,12 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "space",     function () awful.spawn("rofi -show drun -show-icons") end,
+    awful.key({ modkey }, "space", function () awful.spawn.with_shell("~/.config/rofi/launcher/launcher.sh") end,
               {description = "run prompt", group = "launcher"}),
 
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run {
-                    prompt       = "Run Lua code: ",
-                    textbox      = awful.screen.focused().mypromptbox.widget,
-                    exe_callback = awful.util.eval,
-                    history_path = awful.util.get_cache_dir() .. "/history_eval"
-                  }
-              end,
-              {description = "lua execute prompt", group = "awesome"}),
+    awful.key({ modkey }, "F12", function () awful.spawn.with_shell("~/.config/rofi/powermenu/powermenu.sh") end,
+              {description = "power menu", group = "launcher"}),
+
     -- Menubar
     awful.key({ modkey }, "p", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
@@ -500,6 +491,9 @@ awful.rules.rules = {
       { rule = { class = "discord" },
         properties = { screen = 1, tag = " ﭮ " } },
 
+      { rule = { class = "Spotify" },
+        properties = { screen = 1, tag = "  " } },
+
       { rule = { class = "osu!.exe" },
         properties = { screen = 1, tag = "  ", fullscreen = true, ontop = true } },
 
@@ -584,4 +578,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart
 awful.spawn.with_shell("~/.config/awesome/autorun.sh")
 
+-- iBus tray color
+awful.spawn('gsettings set org.freedesktop.ibus.panel xkb-icon-rgba ' .. ("'%s'"):format(beautiful.fg_widget))
 

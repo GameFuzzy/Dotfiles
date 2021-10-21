@@ -470,13 +470,13 @@ awful.rules.rules = {
       {
           rule = {
             class = "jetbrains-.*",
-          }, properties = { focus = true, buttons = clientbuttons_jetbrains }
+          }, properties = { focus = true, buttons = clientbuttons_jetbrains, screen = 1, tag = "  " }
       },
       {
           rule = {
               class = "jetbrains-.*",
               name = "win.*"
-          }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true, placement = awful.placement.restore }
+          }, properties = { titlebars_enabled = false, focusable = false, focus = true, floating = true, placement = awful.placement.restore, screen = 1, tag ="  " }
       },
 
       { rule = { class = "firefox" },
@@ -495,13 +495,13 @@ awful.rules.rules = {
         properties = { screen = 1, tag = "  " } },
 
       { rule = { class = "osu!.exe" },
-        properties = { screen = 1, tag = "  ", fullscreen = true, ontop = true } },
+        properties = { screen = 1, tag = "  ", fullscreen = true, ontop = true } },
 
       { rule_any = { class = { 
 	      "Lutris",
 	      "Steam"
       } },
-        properties = { screen = 1, tag = "  ", maximized_vertical = true, maximized_horizontal = true } },
+        properties = { screen = 1, tag = "  ", maximized_vertical = true, maximized_horizontal = true } },
 
       { rule = { class = "obs" },
         properties = { screen = 1, tag = "  " } },
